@@ -1,0 +1,20 @@
+{
+    "name": "geocaching-livepreview",
+    "version": "1.0.0",
+    "description": "Geocaching Live Preview",
+    "scripts": {},
+    "author": "Surfoo <surfooo@gmail.com>",
+    "license": "ISC",
+    "dependencies": {
+        "normalize.css": "^8.0.1"
+    },
+    "devDependencies": {
+        "eslint": "^8.16.0",
+        "eslint-config-prettier": "^8.5",
+        "eslint-plugin-import": "^2.26.0",
+        "eslint-plugin-node": "^11.1",
+        "eslint-plugin-prettier": "^4.0.0",
+        "eslint-plugin-promise": "^6.0.0",
+        "prettier": "^2.6.2"
+    }
+}

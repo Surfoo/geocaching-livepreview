@@ -1,0 +1,71 @@
+html, body {
+    height: 100%;
+}
+h1 {
+    font-size: 2em;
+}
+h2 {
+    font-size: 1.5em;
+    margin: 0 0 0.5em 0;
+}
+
+body {
+    font-family: "Noto Sans", Arial, Helvetica, sans-serif;
+    display: grid;
+    grid-template-areas:
+        "header header"
+        "input preview"
+        "footer footer";
+        grid-template-columns: 1fr 700px;
+        grid-template-rows: 80px 1fr 80px;
+}
+header {
+    grid-area: header;
+    margin: 1em;
+}
+header h1 {
+    margin: 0;
+}
+#inputSection {
+    grid-area: input;
+    /* background-color: #f5f5f5; */
+    border-right: 2px dotted black;
+    padding: 1em;
+}
+#inputTitle {
+    display: flex;
+    justify-content: space-between;
+}
+#copy {
+    background-color: #fff;
+    width: 30px;
+    height: 30px;
+    border-radius: 0.25rem;
+    border: 1px solid rgb(87, 87, 87);
+    cursor: pointer;
+    padding: auto;
+}
+#copy:hover {
+    background-color: #cdcdcd;
+}
+#copied {
+    display: none;
+}
+#inputText {
+    width: 97%;
+    height: 95%;
+    resize: vertical;
+    padding: 12px;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+#previewSection {
+    grid-area: preview;
+    padding: 1em;
+}
+
+footer {
+    grid-area: footer;
+    border-top: 1px solid black;
+    padding: 1em;
+}

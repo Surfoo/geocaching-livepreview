@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+        <title>Geocaching Description Live Preview</title>
+        <link rel="stylesheet" href="assets/css/normalize.css" type="text/css">
+        <link rel="stylesheet" href="app.css" type="text/css">
+    </head>
+    <body>
+        <header>
+            <h1>Geocaching Live Preview</h1>
+            <small>lorem lipsum..</small>
+        </header>
+
+        <section id="inputSection">
+            <div id="inputTitle">
+                <h2>Your geocache description</h2>
+                <div id="copyBlock">
+                    <span id="copied">Copied!</span>
+                    <button type="button" id="copy" aria-hidden="false" title="Copy to clipboard" aria-label="Copy to clipboard">📋</button>
+                </div>
+            </div>
+            <label>
+                <textarea id="inputText"></textarea>
+            </label>
+        </section>
+
+        <section id="previewSection">
+            <h2>Live Preview</h2>
+            <div id="previewContainer"></div>
+        </section>
+
+        <footer>
+            <p>footer</p>
+        </footer>
+        <script type="text/javascript" src="app.js"></script>
+    </body>
+</html>
