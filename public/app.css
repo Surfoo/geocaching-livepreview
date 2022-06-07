@@ -1,5 +1,12 @@
+@font-face {
+    font-family: "Noto Sans";
+    src: url("assets/NotoSans-Regular.ttf") format("truetype");
+}
+
 html, body {
     height: 100%;
+    background-color: rgb(2, 135, 77);
+
 }
 h1 {
     font-size: 2em;
@@ -16,20 +23,40 @@ body {
         "header header"
         "input preview"
         "footer footer";
-        grid-template-columns: 1fr 700px;
+        grid-template-columns: 1fr 704px;
         grid-template-rows: 80px 1fr 80px;
 }
 header {
     grid-area: header;
-    margin: 1em;
+    margin: 0em;
+    padding: 1em;
+    border-bottom: 1px solid black;
+    background-color: rgb(2, 135, 77);
+    color: #fff;
+    text-shadow: #4a4a4a 2px 2px 2px;
 }
 header h1 {
     margin: 0;
 }
+
+.CodeMirror {
+    border: 1px solid #eee;
+    height: auto;
+}
+.CodeMirror-scroll {
+    overflow: auto;
+    height: auto;
+    overflow: visible;
+    position: relative;
+    outline: none;
+    min-height: 300px; /* the minimum height */
+}
+
 #inputSection {
     grid-area: input;
-    /* background-color: #f5f5f5; */
-    border-right: 2px dotted black;
+background-color: #e7e7e7;
+    margin-right: 1px;
+    border-right: 1px solid black;
     padding: 1em;
 }
 #inputTitle {
@@ -37,19 +64,18 @@ header h1 {
     justify-content: space-between;
 }
 #copy {
-    background-color: #fff;
-    width: 30px;
+    background-color: rgb(2, 135, 77);
+    width: 100px;
     height: 30px;
     border-radius: 0.25rem;
-    border: 1px solid rgb(87, 87, 87);
+    border: 1px solid rgb(2, 135, 77);
     cursor: pointer;
     padding: auto;
+    color: #fff;
 }
 #copy:hover {
-    background-color: #cdcdcd;
-}
-#copied {
-    display: none;
+    background-color: #00b265;
+    border: 1px solid rgb(2, 135, 77);
 }
 #inputText {
     width: 97%;
@@ -62,10 +88,17 @@ header h1 {
 #previewSection {
     grid-area: preview;
     padding: 1em;
+    margin-left: 1px;
+    border-left: 1px solid black;
+    background-color: #fff;
 }
 
 footer {
     grid-area: footer;
     border-top: 1px solid black;
     padding: 1em;
+    background-color: rgb(2, 135, 77);
+}
+a {
+    color: #fff;
 }

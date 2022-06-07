@@ -4,8 +4,17 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width,initial-scale=1">
         <title>Geocaching Description Live Preview</title>
+        <link rel="preconnect" href="https://www.geocaching.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link rel="preconnect" href="https://s3.amazonaws.com">
+        <link rel="preload" href="assets/NotoSans-Regular.ttf" as="font" type="font/ttf" crossorigin="anonymous">
+
         <link rel="stylesheet" href="assets/css/normalize.css" type="text/css">
+        <link rel="stylesheet" href="assets/codemirror/codemirror.css">
+        <link rel="stylesheet" href="assets/codemirror/material-darker.css">
         <link rel="stylesheet" href="app.css" type="text/css">
+        <script type="text/javascript" src="assets/codemirror/codemirror.js"></script>
+        <script type="text/javascript" src="assets/codemirror/xml.js"></script>
     </head>
     <body>
         <header>
@@ -16,24 +25,23 @@
         <section id="inputSection">
             <div id="inputTitle">
                 <h2>Your geocache description</h2>
-                <div id="copyBlock">
-                    <span id="copied">Copied!</span>
-                    <button type="button" id="copy" aria-hidden="false" title="Copy to clipboard" aria-label="Copy to clipboard">📋</button>
-                </div>
+                <button type="button" id="copy" title="Copy to clipboard">📋 Copy</button>
             </div>
             <label>
-                <textarea id="inputText"></textarea>
+                <textarea id="inputText"><h1>Your Geocache title</h1>
+
+<p>You can edit the content of the title above and this paragraph.</p></textarea>
             </label>
         </section>
 
         <section id="previewSection">
-            <h2>Live Preview</h2>
             <div id="previewContainer"></div>
         </section>
 
         <footer>
-            <p>footer</p>
+            <p><a href="https://github.com/Surfoo/geocaching-livepreview">Github Project</p>
         </footer>
+
         <script type="text/javascript" src="app.js"></script>
     </body>
 </html>
