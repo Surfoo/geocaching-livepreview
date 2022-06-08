@@ -46,6 +46,9 @@ const initPreview = () => {
 
   let style = document.createElement("style");
   style.textContent = `
+  html {
+    line-height: normal !important;
+  }
   UserSuppliedContent {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
