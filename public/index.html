@@ -28,8 +28,17 @@
     </head>
     <body>
         <header>
-            <h1>Geocaching Live Preview</h1>
-            <small>lorem lipsum..</small>
+            <div id="header">
+                <h1>Geocaching Live Preview</h1>
+                <small>Get your final geocache description at a glance!</small>
+            </div>
+            <div id="items">
+                <p id="help" title="Help"><a data-modal="help-popin">🛈</a></p>
+                <div id="github">
+                    <img src="assets/logo-github.png" loading="lazy" alt="Github Logo" width="24" height="24" />&nbsp;
+                    <a href="https://github.com/Surfoo/geocaching-livepreview" title="Get the code on Github">Github Project</a>
+                </div>
+            </div>
         </header>
 
         <section id="inputSection">
@@ -48,9 +57,36 @@
             <div id="previewContainer"></div>
         </section>
 
-        <footer>
-            <p><a href="https://github.com/Surfoo/geocaching-livepreview">Github Project</p>
-        </footer>
+        <div class="modal" id="help-popin">
+            <div class="modal-bg modal-exit"></div>
+            <div class="modal-container">
+                <h1>Help</h1>
+
+                <h2>Why this tool?</h2>
+                <p>When you write your description, you need to click to save, and then refresh the description in a second tab in order to get the result.
+                    If it's not correct you need to repeat the process. What a waste of time!</p>
+                <p>
+                    Geocaching Live Preview let you write your geocache description in HTML,
+                    and see it in real time with the real render from geocaching.com.
+                </p>
+
+                <h2>How to write the description?</h2>
+                <ul>
+                    <li>First, you need to learn some HTML skills. There are a lot of resources on internet:
+                        <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element">developer.mozilla.org</a>,
+                        <a href="https://www.tutorialrepublic.com/html-reference/html5-tags.php">tutorialrepublic.com</a>, etc.
+                    </li>
+                    <li>Optionally, you can also learn some CSS skills:
+                        <a href="https://developer.mozilla.org/en-US/docs/Learn/Getting_started_with_the_web/CSS_basics">developer.mozilla.org</a>
+                    </li>
+                    <li>When you are satisfied about your description, copy the HTML code source.</li>
+                    <li>On the geocache page, click on the button "&#60;/&#62; Source".</li>
+                    <li>Paste it in the textarea, and save it.</li>
+
+                </p>
+                <button class="modal-close modal-exit" title="Close" aria-label="Close">×</button>
+            </div>
+          </div>
 
         <script type="text/javascript" src="app.js"></script>
     </body>
