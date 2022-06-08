@@ -12,13 +12,14 @@ let inputText = document.getElementById("inputText"),
     .attachShadow({ mode: "open" });
 document.addEventListener("DOMContentLoaded", () => {
   let htmlCodeMirror = CodeMirror.fromTextArea(inputText, {
-    lineWrapping: true,
-    lineNumbers: true,
-    dragDrop: false,
-    styleActiveLine: true,
-    mode: "text/html",
-    theme: "material-darker",
     autofocus: true,
+    dragDrop: false,
+    extraKeys: { "Ctrl-Space": "autocomplete" },
+    lineNumbers: true,
+    lineWrapping: true,
+    mode: "text/html",
+    styleActiveLine: true,
+    theme: "material-darker",
   });
 
   htmlCodeMirror.refresh();
