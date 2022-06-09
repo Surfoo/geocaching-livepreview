@@ -22,7 +22,7 @@ document.addEventListener("DOMContentLoaded", () => {
     })
 
     htmlCodeMirror.refresh()
-    htmlCodeMirror.on("change", (e) => {
+    htmlCodeMirror.on("changes", (e) => {
         applyPreview(e.getValue())
     })
 
