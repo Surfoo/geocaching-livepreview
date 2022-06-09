@@ -72,6 +72,15 @@ header h1 {
     outline: none;
     min-height: 300px; /* the minimum height */
 }
+.CodeMirror-empty {
+    outline: 1px solid #c22;
+}
+.CodeMirror-empty.CodeMirror-focused {
+    outline: none;
+}
+.CodeMirror pre.CodeMirror-placeholder {
+    color: #999;
+}
 
 #inputSection {
     grid-area: input;
@@ -115,7 +124,7 @@ header h1 {
     margin-left: 1px;
     border-left: 1px solid black;
     background-color: #fff;
-    line-height: 1.15;
+    line-height: 1.3;
 }
 
 .modal {

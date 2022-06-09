@@ -22,6 +22,7 @@
         <script src="assets/codemirror/addon/hint/show-hint.js"></script>
         <script src="assets/codemirror/addon/hint/xml-hint.js"></script>
         <script src="assets/codemirror/addon/hint/html-hint.js"></script>
+        <script src="assets/codemirror/addon/placeholder.js"></script>
 
         <script src="assets/codemirror/mode/xml/xml.js"></script>
         <script src="assets/codemirror/mode/htmlmixed/htmlmixed.js"></script>
@@ -47,9 +48,9 @@
                 <button type="button" id="copy" title="Copy to clipboard">📋 Copy</button>
             </div>
             <label>
-                <textarea id="inputText"><h1>Your Geocache title</h1>
+                <textarea id="inputText"placeholder="Code goes here..."><h1 style="color:chocolate">Your Geocache title</h1>
 
-<p>You can edit the content of the title above and this paragraph.</p></textarea>
+<p style="margin: 1em 0 0 0;">You can edit the content of the title above and this paragraph.</p></textarea>
             </label>
         </section>
 
@@ -67,7 +68,8 @@
                     If it's not correct you need to repeat the process. What a waste of time!</p>
                 <p>
                     Geocaching Live Preview let you write your geocache description in HTML,
-                    and see it in real time with the real render from geocaching.com.
+                    and see it in real time with the real render from geocaching.com.<br />
+                    <strong>This Live Preview is an "expert" mode for people which already know and write their descriptions in HTML.</strong> But of course you can learn some basic skills to improve the quality of your descriptions.
                 </p>
 
                 <h2>How to write the description?</h2>
@@ -80,10 +82,13 @@
                         <a href="https://developer.mozilla.org/en-US/docs/Learn/Getting_started_with_the_web/CSS_basics">developer.mozilla.org</a>
                     </li>
                     <li>When you are satisfied about your description, copy the HTML code source.</li>
-                    <li>On the geocache page, click on the button "&#60;/&#62; Source".</li>
+                    <li>On the geocache page, click on the button "<span style="white-space: pre">&#60;/&#62; Source</span>".</li>
                     <li>Paste it in the textarea, and save it.</li>
+                </ul>
 
-                </p>
+                <h2>Contact</h2>
+                <p>surfooo at gmail dot com (English or French only)</p>
+
                 <button class="modal-close modal-exit" title="Close" aria-label="Close">×</button>
             </div>
           </div>
