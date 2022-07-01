@@ -12,23 +12,7 @@
         <link rel="preload" href="assets/NotoSans-Regular.ttf" as="font" type="font/ttf" crossorigin="anonymous">
 
         <link rel="stylesheet" href="assets/css/normalize.css" type="text/css">
-        <link rel="stylesheet" href="assets/codemirror/codemirror.css">
-        <link rel="stylesheet" href="assets/codemirror/addon/hint/show-hint.css">
-        <link rel="stylesheet" href="assets/codemirror/addon/lint/lint.css">
-        <link rel="stylesheet" href="assets/codemirror/material-darker.css">
         <link rel="stylesheet" href="app.css" type="text/css">
-
-        <script src="assets/codemirror/codemirror.js"></script>
-
-        <script src="assets/codemirror/addon/hint/show-hint.js"></script>
-        <script src="assets/codemirror/addon/hint/xml-hint.js"></script>
-        <script src="assets/codemirror/addon/hint/html-hint.js"></script>
-        <script src="assets/codemirror/addon/lint/lint.js"></script>
-        <script src="assets/codemirror/addon/lint/html-lint.js"></script>
-        <script src="assets/codemirror/addon/placeholder.js"></script>
-
-        <script src="assets/codemirror/mode/xml/xml.js"></script>
-        <script src="assets/codemirror/mode/htmlmixed/htmlmixed.js"></script>
     </head>
     <body>
         <header>
@@ -51,9 +35,7 @@
                 <button type="button" id="copy" title="Copy to clipboard">📋 Copy</button>
             </div>
             <label>
-                <textarea id="inputText"placeholder="Code goes here..."><h1 style="color:chocolate">Your Geocache title</h1>
-
-<p style="margin: 1em 0 0 0;">You can edit the content of the title above and this paragraph.</p></textarea>
+                <div id="inputText"></div>
             </label>
         </section>
 
@@ -108,6 +90,6 @@
             g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
             })();
         </script>
-        <script type="module" src="app.js"></script>
+        <script type="module" src="app.bundle.js"></script>
     </body>
 </html>

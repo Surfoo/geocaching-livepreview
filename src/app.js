@@ -1,4 +1,8 @@
-/* global CodeMirror */
+import { EditorView, keymap, lineNumbers } from "@codemirror/view"
+import { defaultKeymap, history, historyKeymap } from "@codemirror/commands"
+import { html } from "@codemirror/lang-html"
+import { oneDark } from "@codemirror/theme-one-dark"
+import { autocompletion } from "@codemirror/autocomplete"
 
 const geocachingCssFiles = [
     "https://fonts.googleapis.com/css?family=Noto+Sans:400,700&subset=latin,latin-ext",
@@ -7,27 +11,43 @@ const geocachingCssFiles = [
 
 let inputText = document.getElementById("inputText"),
     copyBtn = document.getElementById("copy"),
-    shadowPreview = document.getElementById("previewContainer").attachShadow({ mode: "open" })
+    shadowPreview = document.getElementById("previewContainer").attachShadow({ mode: "open" }),
+    view
+
+const initialDocument = `<h1 style="color:chocolate">Your Geocache title</h1>
+
+<p style="margin: 1em 0 0 0;">You can edit the content of the title above and this paragraph.</p>`
 
 document.addEventListener("DOMContentLoaded", () => {
-    let htmlCodeMirror = CodeMirror.fromTextArea(inputText, {
-        autofocus: true,
-        dragDrop: false,
-        extraKeys: { "Ctrl-Space": "autocomplete" },
-        lineNumbers: true,
-        lineWrapping: true,
-        mode: "text/html",
-        styleActiveLine: true,
-        theme: "material-darker",
-    })
+    let doc = initialDocument
+    if (storageAvailable("localStorage") && localStorage.getItem("content").trim().length > 0) {
+        doc = localStorage.getItem("content")
+    }
 
-    htmlCodeMirror.refresh()
-    htmlCodeMirror.on("changes", (e) => {
-        applyPreview(e.getValue())
+    view = new EditorView({
+        doc,
+        extensions: [
+            history(),
+            keymap.of([...defaultKeymap, ...historyKeymap]),
+            lineNumbers(),
+            html(),
+            EditorView.lineWrapping,
+            oneDark,
+            autocompletion({}),
+            EditorView.updateListener.of((update) => {
+                if (update.docChanged) {
+                    if (storageAvailable("localStorage")) {
+                        localStorage.setItem("content", update.state.doc.toString().trim())
+                    }
+                    applyPreview(update.state.doc.toString())
+                }
+            }),
+        ],
+        parent: document.querySelector("#inputText"),
     })
 
     initPreview()
-    applyPreview(inputText.value)
+    applyPreview(view.state.doc.toString())
 
     if (!isCopyAvailable()) {
         copyBtn.style.display = "none"
@@ -86,12 +106,39 @@ const applyPreview = (content) => {
 //   });
 // };
 
+const storageAvailable = (type) => {
+    let storage
+    try {
+        storage = window[type]
+        let x = "__storage_test__"
+        storage.setItem(x, x)
+        storage.removeItem(x)
+        return true
+    } catch (e) {
+        return (
+            e instanceof DOMException &&
+            // everything except Firefox
+            (e.code === 22 ||
+                // Firefox
+                e.code === 1014 ||
+                // test name field too, because code might not be present
+                // everything except Firefox
+                e.name === "QuotaExceededError" ||
+                // Firefox
+                e.name === "NS_ERROR_DOM_QUOTA_REACHED") &&
+            // acknowledge QuotaExceededError only if there's something already stored
+            storage &&
+            storage.length !== 0
+        )
+    }
+}
+
 const isCopyAvailable = () => {
     return navigator && navigator.clipboard && navigator.clipboard.writeText
 }
 
 const copyToClipboard = () => {
-    navigator.clipboard.writeText(inputText.value)
+    navigator.clipboard.writeText(view.state.doc.toString())
     document.getElementById("copy").innerHTML = "📋 Copied!"
     window.setTimeout(() => {
         document.getElementById("copy").innerHTML = "📋 Copy"

@@ -60,17 +60,9 @@ header h1 {
     display: inline-flex;
     align-items: center;
 }
-.CodeMirror {
+/*.CodeMirror {
     border: 1px solid #eee;
     height: auto;
-}
-.CodeMirror-scroll {
-    overflow: auto;
-    height: auto;
-    overflow: visible;
-    position: relative;
-    outline: none;
-    min-height: 300px; /* the minimum height */
 }
 .CodeMirror-empty {
     outline: 1px solid #c22;
@@ -80,6 +72,13 @@ header h1 {
 }
 .CodeMirror pre.CodeMirror-placeholder {
     color: #999;
+}*/
+
+.cm-scroller {
+    height: auto;
+    overflow: visible;
+    outline: none;
+    min-height: 300px;
 }
 
 #inputSection {
@@ -111,10 +110,6 @@ header h1 {
 }
 
 #inputText {
-    width: 97%;
-    height: 95%;
-    resize: vertical;
-    padding: 12px;
     font-family: 'Courier New', Courier, monospace;
 }
 
