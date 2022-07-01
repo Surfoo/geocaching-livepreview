@@ -9,8 +9,7 @@ const geocachingCssFiles = [
     "https://www.geocaching.com/content/coreCSS",
 ]
 
-let inputText = document.getElementById("inputText"),
-    copyBtn = document.getElementById("copy"),
+let copyBtn = document.getElementById("copy"),
     shadowPreview = document.getElementById("previewContainer").attachShadow({ mode: "open" }),
     view
 
@@ -20,7 +19,11 @@ const initialDocument = `<h1 style="color:chocolate">Your Geocache title</h1>
 
 document.addEventListener("DOMContentLoaded", () => {
     let doc = initialDocument
-    if (storageAvailable("localStorage") && localStorage.getItem("content").trim().length > 0) {
+    if (
+        storageAvailable("localStorage") &&
+        localStorage.getItem("content") &&
+        localStorage.getItem("content").trim().length > 0
+    ) {
         doc = localStorage.getItem("content")
     }
 

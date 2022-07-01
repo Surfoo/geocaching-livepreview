@@ -21581,8 +21581,7 @@
        "https://www.geocaching.com/content/coreCSS",
    ];
 
-   document.getElementById("inputText");
-       let copyBtn = document.getElementById("copy"),
+   let copyBtn = document.getElementById("copy"),
        shadowPreview = document.getElementById("previewContainer").attachShadow({ mode: "open" }),
        view;
 
@@ -21592,7 +21591,11 @@
 
    document.addEventListener("DOMContentLoaded", () => {
        let doc = initialDocument;
-       if (storageAvailable("localStorage") && localStorage.getItem("content").trim().length > 0) {
+       if (
+           storageAvailable("localStorage") &&
+           localStorage.getItem("content") &&
+           localStorage.getItem("content").trim().length > 0
+       ) {
            doc = localStorage.getItem("content");
        }
 
