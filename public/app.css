@@ -60,19 +60,6 @@ header h1 {
     display: inline-flex;
     align-items: center;
 }
-/*.CodeMirror {
-    border: 1px solid #eee;
-    height: auto;
-}
-.CodeMirror-empty {
-    outline: 1px solid #c22;
-}
-.CodeMirror-empty.CodeMirror-focused {
-    outline: none;
-}
-.CodeMirror pre.CodeMirror-placeholder {
-    color: #999;
-}*/
 
 .cm-scroller {
     height: auto;
@@ -107,10 +94,6 @@ header h1 {
 #copy:hover {
     background-color: #00b265;
     border: 1px solid rgb(2, 135, 77);
-}
-
-#inputText {
-    font-family: 'Courier New', Courier, monospace;
 }
 
 #previewSection {

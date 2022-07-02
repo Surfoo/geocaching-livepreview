@@ -21585,7 +21585,7 @@
        shadowPreview = document.getElementById("previewContainer").attachShadow({ mode: "open" }),
        view;
 
-   const initialDocument = `<h1 style="color:chocolate">Your Geocache title</h1>
+   const initialDocument = `<h1 style="color: chocolate">Your Geocache title</h1>
 
 <p style="margin: 1em 0 0 0;">You can edit the content of the title above and this paragraph.</p>`;
 
