@@ -30,6 +30,7 @@ document.addEventListener("DOMContentLoaded", () => {
     view = new EditorView({
         doc,
         extensions: [
+            basicSetup(),
             history(),
             keymap.of([...defaultKeymap, ...historyKeymap]),
             lineNumbers(),
