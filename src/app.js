@@ -1,30 +1,30 @@
-import { EditorView, keymap, lineNumbers } from "@codemirror/view"
-import { defaultKeymap, history, historyKeymap } from "@codemirror/commands"
-import { html } from "@codemirror/lang-html"
-import { oneDark } from "@codemirror/theme-one-dark"
-import { autocompletion } from "@codemirror/autocomplete"
+import { EditorView, keymap, lineNumbers } from '@codemirror/view'
+import { defaultKeymap, history, historyKeymap } from '@codemirror/commands'
+import { html } from '@codemirror/lang-html'
+import { oneDark } from '@codemirror/theme-one-dark'
+import { autocompletion } from '@codemirror/autocomplete'
 
 const geocachingCssFiles = [
-    "https://fonts.googleapis.com/css?family=Noto+Sans:400,700&subset=latin,latin-ext",
-    "https://www.geocaching.com/content/coreCSS",
+    'https://fonts.googleapis.com/css?family=Noto+Sans:400,700&subset=latin,latin-ext',
+    'https://www.geocaching.com/content/coreCSS',
 ]
 
-let copyBtn = document.getElementById("copy"),
-    shadowPreview = document.getElementById("previewContainer").attachShadow({ mode: "open" }),
+let copyBtn = document.getElementById('copy'),
+    shadowPreview = document.getElementById('previewContainer').attachShadow({ mode: 'open' }),
     view
 
 const initialDocument = `<h1 style="color: chocolate">Your Geocache title</h1>
 
 <p style="margin: 1em 0 0 0;">You can edit the content of the title above and this paragraph.</p>`
 
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener('DOMContentLoaded', () => {
     let doc = initialDocument
     if (
-        storageAvailable("localStorage") &&
-        localStorage.getItem("content") &&
-        localStorage.getItem("content").trim().length > 0
+        storageAvailable('localStorage') &&
+        localStorage.getItem('content') &&
+        localStorage.getItem('content').trim().length > 0
     ) {
-        doc = localStorage.getItem("content")
+        doc = localStorage.getItem('content')
     }
 
     view = new EditorView({
@@ -39,53 +39,53 @@ document.addEventListener("DOMContentLoaded", () => {
             autocompletion({}),
             EditorView.updateListener.of((update) => {
                 if (update.docChanged) {
-                    if (storageAvailable("localStorage")) {
-                        localStorage.setItem("content", update.state.doc.toString().trim())
+                    if (storageAvailable('localStorage')) {
+                        localStorage.setItem('content', update.state.doc.toString().trim())
                     }
                     applyPreview(update.state.doc.toString())
                 }
             }),
         ],
-        parent: document.querySelector("#inputText"),
+        parent: document.querySelector('#inputText'),
     })
 
     initPreview()
     applyPreview(view.state.doc.toString())
 
     if (!isCopyAvailable()) {
-        copyBtn.style.display = "none"
+        copyBtn.style.display = 'none'
     } else {
-        copyBtn.addEventListener("click", copyToClipboard)
+        copyBtn.addEventListener('click', copyToClipboard)
     }
 })
 
 const initPreview = () => {
+    let html = document.createElement('html'),
+        head = document.createElement('head'),
+        body = document.createElement('body')
+
+    html.appendChild(head)
+
     geocachingCssFiles.forEach((cssFile) => {
-        let linkElem = document.createElement("link")
-        linkElem.setAttribute("rel", "stylesheet")
-        linkElem.setAttribute("href", cssFile)
-        shadowPreview.appendChild(linkElem)
+        let linkElem = document.createElement('link')
+        linkElem.setAttribute('rel', 'stylesheet')
+        linkElem.setAttribute('href', cssFile)
+        head.appendChild(linkElem)
     })
 
-    let style = document.createElement("style")
-    style.textContent = `
-  html {
-    line-height: normal !important;
-  }
-  UserSuppliedContent {
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    background-color: #fff;
-    color: #4a4a4a;
-    font-size: 0.875rem;
-    line-height: 1.3;
-    position: relative;
-}`
-    shadowPreview.appendChild(style)
+    let userSuppliedContent = document.createElement('div')
+    userSuppliedContent.classList.add('UserSuppliedContent')
 
-    let wrapper = document.createElement("div")
-    wrapper.setAttribute("id", "preview")
-    shadowPreview.appendChild(wrapper)
+    let longDescription = userSuppliedContent.appendChild(document.createElement('span'))
+    longDescription.setAttribute('id', 'ctl00_ContentBody_LongDescription')
+
+    userSuppliedContent.appendChild(longDescription)
+
+    body.appendChild(userSuppliedContent)
+
+    html.appendChild(body)
+
+    shadowPreview.appendChild(html)
 }
 
 const applyPreview = (content) => {
@@ -93,10 +93,7 @@ const applyPreview = (content) => {
     //   return;
     // }
 
-    shadowPreview.getElementById("preview").innerHTML = `
-  <div class="UserSuppliedContent">
-      <span id="ctl00_ContentBody_LongDescription">${content}</span>
-  </div>`
+    shadowPreview.getElementById('ctl00_ContentBody_LongDescription').innerHTML = content
 }
 
 // const cleanInput = (content) => {
@@ -113,7 +110,7 @@ const storageAvailable = (type) => {
     let storage
     try {
         storage = window[type]
-        let x = "__storage_test__"
+        let x = '__storage_test__'
         storage.setItem(x, x)
         storage.removeItem(x)
         return true
@@ -121,7 +118,7 @@ const storageAvailable = (type) => {
         return (
             e instanceof DOMException &&
             // everything except Firefox
-            (e.name === "QuotaExceededError" || e.name === "NS_ERROR_DOM_QUOTA_REACHED") &&
+            (e.name === 'QuotaExceededError' || e.name === 'NS_ERROR_DOM_QUOTA_REACHED') &&
             storage &&
             storage.length !== 0
         )
@@ -134,23 +131,23 @@ const isCopyAvailable = () => {
 
 const copyToClipboard = () => {
     navigator.clipboard.writeText(view.state.doc.toString())
-    document.getElementById("copy").innerHTML = "📋 Copied!"
+    document.getElementById('copy').innerHTML = '📋 Copied!'
     window.setTimeout(() => {
-        document.getElementById("copy").innerHTML = "📋 Copy"
+        document.getElementById('copy').innerHTML = '📋 Copy'
     }, 1000)
 }
 
-const modals = document.querySelectorAll("[data-modal]")
+const modals = document.querySelectorAll('[data-modal]')
 modals.forEach(function (trigger) {
-    trigger.addEventListener("click", function (event) {
+    trigger.addEventListener('click', function (event) {
         event.preventDefault()
         const modal = document.getElementById(trigger.dataset.modal)
-        modal.classList.add("modal-open")
-        const exits = modal.querySelectorAll(".modal-exit")
+        modal.classList.add('modal-open')
+        const exits = modal.querySelectorAll('.modal-exit')
         exits.forEach(function (exit) {
-            exit.addEventListener("click", function (event) {
+            exit.addEventListener('click', function (event) {
                 event.preventDefault()
-                modal.classList.remove("modal-open")
+                modal.classList.remove('modal-open')
             })
         })
     })
