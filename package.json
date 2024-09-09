@@ -1,27 +1,20 @@
 {
-    "name": "geocaching-livepreview",
-    "version": "1.0.0",
-    "description": "Geocaching Live Preview",
-    "scripts": {
-        "watch": "node_modules/.bin/esbuild src/app.js --sourcemap=linked --bundle --watch --outfile=public/app.bundle.js",
-        "build": "node_modules/.bin/esbuild src/app.js --bundle --minify --outfile=public/app.bundle.js"
-    },
-    "author": "Surfoo <surfooo@gmail.com>",
-    "license": "ISC",
-    "dependencies": {
-        "@codemirror/lang-html": "^6.2.0",
-        "@codemirror/theme-one-dark": "^6.1.0",
-        "codemirror": "^6.0.1",
-        "normalize.css": "^8.0.1"
-    },
-    "devDependencies": {
-        "esbuild": "^0.15.14",
-        "eslint": "^8.28.0",
-        "eslint-config-prettier": "^8.5",
-        "eslint-plugin-import": "^2.26.0",
-        "eslint-plugin-node": "^11.1",
-        "eslint-plugin-prettier": "^4.2.1",
-        "eslint-plugin-promise": "^6.1.1",
-        "prettier": "^2.7.1"
-    }
+  "name": "geocaching-livepreview",
+  "version": "1.0.0",
+  "description": "Geocaching Live Preview",
+  "scripts": {
+    "watch": "bun build --watch --minify src/app.js --sourcemap=inline --outfile=public/app.bundle.js",
+    "build": "bun build         --minify src/app.js --sourcemap=inline --outfile=public/app.bundle.js"
+  },
+  "author": "Surfoo <surfooo@gmail.com>",
+  "license": "ISC",
+  "dependencies": {
+    "@codemirror/lang-html": "^6.3.1",
+    "@codemirror/theme-one-dark": "^6.1.2",
+    "codemirror": "^6.0.1",
+    "normalize.css": "^8.0.1"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "1.8.3"
+  }
 }
