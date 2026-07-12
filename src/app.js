@@ -122,8 +122,6 @@ const initPreview = () => {
     let longDescription = userSuppliedContent.appendChild(document.createElement('span'))
     longDescription.setAttribute('id', 'ctl00_ContentBody_LongDescription')
 
-    userSuppliedContent.appendChild(longDescription)
-
     body.appendChild(userSuppliedContent)
 
     html.appendChild(body)
