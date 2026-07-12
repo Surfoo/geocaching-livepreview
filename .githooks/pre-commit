@@ -1,0 +1,28 @@
+#!/bin/bash
+#
+# Pre-commit hook: lints staged JS/JSON with Biome before allowing a commit.
+# Enable with: git config core.hooksPath hooks
+#
+
+set -Eeuo pipefail
+
+staged_files=$(git diff --cached --name-only --diff-filter=ACMR | grep -E '\.(js|json|jsx|ts|tsx)$' || true)
+
+if [[ -z "$staged_files" ]]; then
+    exit 0
+fi
+
+if ! command -v bunx >/dev/null 2>&1; then
+    echo "⚠️  bunx not found, Biome check ignored" >&2
+    exit 0
+fi
+
+echo "🔍 Running Biome check on modified files..."
+
+# shellcheck disable=SC2086
+if ! bunx biome check --no-errors-on-unmatched $staged_files; then
+    echo "❌ Biome detected issues. Fix them with 'bunx biome check --write .' and then commit again." >&2
+    exit 1
+fi
+
+echo "✅ Biome OK"

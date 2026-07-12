@@ -3,6 +3,49 @@ import { defaultKeymap, history, historyKeymap } from '@codemirror/commands'
 import { html } from '@codemirror/lang-html'
 import { oneDark } from '@codemirror/theme-one-dark'
 import { autocompletion } from '@codemirror/autocomplete'
+import i18next from 'i18next'
+import Fetch from 'i18next-fetch-backend'
+
+let i18nextOptions = {
+    // path where resources get loaded from, or a function
+    // returning a path:
+    // function(lngs, namespaces) { return customPath; }
+    // the returned path will interpolate lng, ns if provided like giving a static path
+    loadPath: 'assets/locales/fr.json',
+
+    // parse data after it has been fetched
+    // in example use https://www.npmjs.com/package/json5
+    // here it removes the letter a from the json (bad idea)
+    // parse: function (data) {
+    //     return data.replace(/a/g, '')
+    // },
+
+    // path to post missing resources
+    // addPath: 'assets/locales/add/{{lng}}/{{ns}}',
+
+    // define how to stringify the data when adding missing resources
+    stringify: JSON.stringify,
+
+    // your backend server supports multiloading
+    // /locales/resources.json?lng=de+en&ns=ns1+ns2
+    allowMultiLoading: false, // set loadPath: '/locales/resources.json?lng={{lng}}&ns={{ns}}' to adapt to multiLoading
+
+    multiSeparator: '+',
+
+    // init option for fetch, for example
+    requestOptions: {
+        mode: 'cors',
+        credentials: 'same-origin',
+        cache: 'default',
+    },
+
+    // define a custom fetch function
+    fetch: function (url, options, callback) {},
+}
+
+i18next.use(Fetch).init({
+    backend: i18nextOptions,
+})
 
 const geocachingCssFiles = [
     'https://fonts.googleapis.com/css?family=Noto+Sans:400,700&subset=latin,latin-ext',

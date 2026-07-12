@@ -8,7 +8,7 @@
     "lineWidth": 120,
     "attributePosition": "auto"
   },
-  "linter": { "enabled": true, "rules": { "recommended": false } },
+  "linter": { "enabled": true, "rules": { "preset": true } },
   "files": {
     "maxSize": 3145728
   },
