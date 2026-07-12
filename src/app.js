@@ -1,12 +1,12 @@
-import { EditorView, keymap, lineNumbers } from '@codemirror/view'
+import { autocompletion } from '@codemirror/autocomplete'
 import { defaultKeymap, history, historyKeymap } from '@codemirror/commands'
 import { html } from '@codemirror/lang-html'
 import { oneDark } from '@codemirror/theme-one-dark'
-import { autocompletion } from '@codemirror/autocomplete'
+import { EditorView, keymap, lineNumbers } from '@codemirror/view'
 import i18next from 'i18next'
 import Fetch from 'i18next-fetch-backend'
 
-let i18nextOptions = {
+const i18nextOptions = {
     // path where resources get loaded from, or a function
     // returning a path:
     // function(lngs, namespaces) { return customPath; }
@@ -40,7 +40,7 @@ let i18nextOptions = {
     },
 
     // define a custom fetch function
-    fetch: function (url, options, callback) {},
+    fetch: (url, options, callback) => {},
 }
 
 i18next.use(Fetch).init({
@@ -103,23 +103,23 @@ document.addEventListener('DOMContentLoaded', () => {
 })
 
 const initPreview = () => {
-    let html = document.createElement('html'),
+    const html = document.createElement('html'),
         head = document.createElement('head'),
         body = document.createElement('body')
 
     html.appendChild(head)
 
     geocachingCssFiles.forEach((cssFile) => {
-        let linkElem = document.createElement('link')
+        const linkElem = document.createElement('link')
         linkElem.setAttribute('rel', 'stylesheet')
         linkElem.setAttribute('href', cssFile)
         head.appendChild(linkElem)
     })
 
-    let userSuppliedContent = document.createElement('div')
+    const userSuppliedContent = document.createElement('div')
     userSuppliedContent.classList.add('UserSuppliedContent')
 
-    let longDescription = userSuppliedContent.appendChild(document.createElement('span'))
+    const longDescription = userSuppliedContent.appendChild(document.createElement('span'))
     longDescription.setAttribute('id', 'ctl00_ContentBody_LongDescription')
 
     body.appendChild(userSuppliedContent)
@@ -151,7 +151,7 @@ const storageAvailable = (type) => {
     let storage
     try {
         storage = window[type]
-        let x = '__storage_test__'
+        const x = '__storage_test__'
         storage.setItem(x, x)
         storage.removeItem(x)
         return true
@@ -189,14 +189,14 @@ document.querySelectorAll('.theme-toggle [data-set-theme]').forEach((btn) => {
 })
 
 const modals = document.querySelectorAll('[data-modal]')
-modals.forEach(function (trigger) {
-    trigger.addEventListener('click', function (event) {
+modals.forEach((trigger) => {
+    trigger.addEventListener('click', (event) => {
         event.preventDefault()
         const modal = document.getElementById(trigger.dataset.modal)
         modal.classList.add('modal-open')
         const exits = modal.querySelectorAll('.modal-exit')
-        exits.forEach(function (exit) {
-            exit.addEventListener('click', function (event) {
+        exits.forEach((exit) => {
+            exit.addEventListener('click', (event) => {
                 event.preventDefault()
                 modal.classList.remove('modal-open')
             })

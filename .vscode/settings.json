@@ -1,14 +1,14 @@
 {
-  "editor.formatOnSave": true,
-  "[javascript]": {
     "editor.formatOnSave": true,
-    "editor.defaultFormatter": "biomejs.biome"
-  },
-  "editor.codeActionsOnSave": {
-    "source.fixAll": "explicit"
-  },
-  "eslint.alwaysShowStatus": true,
-  "files.trimTrailingWhitespace": true,
-  "files.eol": "\n",
-  "editor.insertSpaces": true
+    "[javascript]": {
+        "editor.formatOnSave": true,
+        "editor.defaultFormatter": "biomejs.biome"
+    },
+    "editor.codeActionsOnSave": {
+        "source.fixAll": "explicit"
+    },
+    "eslint.alwaysShowStatus": true,
+    "files.trimTrailingWhitespace": true,
+    "files.eol": "\n",
+    "editor.insertSpaces": true
 }

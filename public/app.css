@@ -1,55 +1,56 @@
 /* ── Design tokens (shared with GeoRoadbook) ─────────────────── */
 :root,
 html[data-theme="light"] {
-    --bg-base:            #f6f9f4;
-    --header-bg:          rgba(255, 255, 255, 0.72);
-    --header-border:      rgba(23, 36, 25, 0.08);
-    --text-primary:       #17241b;
-    --text-secondary:     #5b6b5e;
-    --text-muted:         #8a978c;
-    --divider:            #e2e9df;
-    --card-bg:            rgba(255, 255, 255, 0.9);
-    --card-border:        rgba(23, 36, 25, 0.08);
-    --shadow-color:       rgba(23, 36, 25, 0.10);
-    --input-bg:           #ffffff;
-    --input-border:       #d4e0d0;
-    --toggle-track-bg:    rgba(23, 36, 25, 0.05);
+    --bg-base: #f6f9f4;
+    --header-bg: rgba(255, 255, 255, 0.72);
+    --header-border: rgba(23, 36, 25, 0.08);
+    --text-primary: #17241b;
+    --text-secondary: #5b6b5e;
+    --text-muted: #8a978c;
+    --divider: #e2e9df;
+    --card-bg: rgba(255, 255, 255, 0.9);
+    --card-border: rgba(23, 36, 25, 0.08);
+    --shadow-color: rgba(23, 36, 25, 0.1);
+    --input-bg: #ffffff;
+    --input-border: #d4e0d0;
+    --toggle-track-bg: rgba(23, 36, 25, 0.05);
     --toggle-track-border: rgba(23, 36, 25, 0.1);
-    --hero-line-1:        rgba(47, 111, 79, 0.07);
-    --hero-line-2:        rgba(47, 111, 79, 0.05);
+    --hero-line-1: rgba(47, 111, 79, 0.07);
+    --hero-line-2: rgba(47, 111, 79, 0.05);
 }
 
 html[data-theme="dark"] {
-    --bg-base:            #14171a;
-    --header-bg:          rgba(20, 23, 26, 0.72);
-    --header-border:      rgba(255, 255, 255, 0.06);
-    --text-primary:       #eef1f3;
-    --text-secondary:     #9aa4ad;
-    --text-muted:         #6d7981;
-    --divider:            rgba(255, 255, 255, 0.08);
-    --card-bg:            rgba(255, 255, 255, 0.035);
-    --card-border:        rgba(255, 255, 255, 0.09);
-    --shadow-color:       rgba(0, 0, 0, 0.35);
-    --input-bg:           #191d21;
-    --input-border:       #2c3238;
-    --toggle-track-bg:    rgba(255, 255, 255, 0.04);
+    --bg-base: #14171a;
+    --header-bg: rgba(20, 23, 26, 0.72);
+    --header-border: rgba(255, 255, 255, 0.06);
+    --text-primary: #eef1f3;
+    --text-secondary: #9aa4ad;
+    --text-muted: #6d7981;
+    --divider: rgba(255, 255, 255, 0.08);
+    --card-bg: rgba(255, 255, 255, 0.035);
+    --card-border: rgba(255, 255, 255, 0.09);
+    --shadow-color: rgba(0, 0, 0, 0.35);
+    --input-bg: #191d21;
+    --input-border: #2c3238;
+    --toggle-track-bg: rgba(255, 255, 255, 0.04);
     --toggle-track-border: rgba(255, 255, 255, 0.08);
-    --hero-line-1:        rgba(255, 255, 255, 0.028);
-    --hero-line-2:        rgba(255, 255, 255, 0.02);
+    --hero-line-1: rgba(255, 255, 255, 0.028);
+    --hero-line-2: rgba(255, 255, 255, 0.02);
 }
 
 :root {
-    --signal-orange:  #e85d04;
-    --forest-green:   #2f6f4f;
-    --sky-blue:       #5b9bd5;
+    --signal-orange: #e85d04;
+    --forest-green: #2f6f4f;
+    --sky-blue: #5b9bd5;
 
-    --font-display:   'Playfair Display', Georgia, serif;
-    --font-body:      'DM Sans', system-ui, sans-serif;
-    --font-mono:      'JetBrains Mono', 'Courier New', monospace;
+    --font-display: "Playfair Display", Georgia, serif;
+    --font-body: "DM Sans", system-ui, sans-serif;
+    --font-mono: "JetBrains Mono", "Courier New", monospace;
 }
 
 /* ── Base ───────────────────────────────────────────────────── */
-html, body {
+html,
+body {
     height: 100%;
     line-height: normal !important;
 }
@@ -59,7 +60,9 @@ body {
     color: var(--text-primary);
     font-family: var(--font-body);
     -webkit-font-smoothing: antialiased;
-    transition: background 0.25s ease, color 0.25s ease;
+    transition:
+        background 0.25s ease,
+        color 0.25s ease;
     display: grid;
     grid-template-areas:
         "header header"
@@ -68,11 +71,18 @@ body {
     grid-template-rows: 80px 1fr;
 }
 
-::selection { background: var(--signal-orange); color: #ffffff; }
+::selection {
+    background: var(--signal-orange);
+    color: #ffffff;
+}
 
 @keyframes driftLines {
-    0%   { background-position: 0 0; }
-    100% { background-position: 120px 120px; }
+    0% {
+        background-position: 0 0;
+    }
+    100% {
+        background-position: 120px 120px;
+    }
 }
 
 h1 {
@@ -90,14 +100,15 @@ header a {
     color: var(--text-primary);
 }
 
-.text-orange { color: var(--signal-orange); }
+.text-orange {
+    color: var(--signal-orange);
+}
 
 /* ── Header (navbar) ──────────────────────────────────────────*/
 header {
     grid-area: header;
     display: grid;
-    grid-template-areas:
-        "header-left header-right";
+    grid-template-areas: "header-left header-right";
     grid-template-columns: 1fr 1fr;
     align-items: center;
     margin: 0;
@@ -190,8 +201,20 @@ html[data-theme="dark"] .theme-toggle button[data-set-theme="dark"] {
     grid-area: input;
     background-color: var(--input-bg);
     background-image:
-        repeating-linear-gradient(115deg, var(--hero-line-1) 0px, var(--hero-line-1) 1px, transparent 1px, transparent 46px),
-        repeating-linear-gradient(25deg, var(--hero-line-2) 0px, var(--hero-line-2) 1px, transparent 1px, transparent 64px);
+        repeating-linear-gradient(
+            115deg,
+            var(--hero-line-1) 0px,
+            var(--hero-line-1) 1px,
+            transparent 1px,
+            transparent 46px
+        ),
+        repeating-linear-gradient(
+            25deg,
+            var(--hero-line-2) 0px,
+            var(--hero-line-2) 1px,
+            transparent 1px,
+            transparent 64px
+        );
     animation: driftLines 14s linear infinite;
     border-right: 1px solid var(--divider);
     padding: 1em;
@@ -219,7 +242,9 @@ html[data-theme="dark"] .theme-toggle button[data-set-theme="dark"] {
     font-weight: 600;
     cursor: pointer;
     box-shadow: 0 4px 12px rgba(232, 93, 4, 0.25);
-    transition: transform 0.15s ease, box-shadow 0.15s ease;
+    transition:
+        transform 0.15s ease,
+        box-shadow 0.15s ease;
 }
 
 #copy:hover {
@@ -267,7 +292,9 @@ html[data-theme="dark"] .theme-toggle button[data-set-theme="dark"] {
     border-radius: 12px;
     backdrop-filter: blur(18px);
     -webkit-backdrop-filter: blur(18px);
-    box-shadow: 0 0 0 1px rgba(232, 93, 4, 0.05), 0 20px 60px var(--shadow-color);
+    box-shadow:
+        0 0 0 1px rgba(232, 93, 4, 0.05),
+        0 20px 60px var(--shadow-color);
     color: var(--text-primary);
     position: relative;
     padding: 30px;

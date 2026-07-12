@@ -21,7 +21,7 @@
     <link rel="stylesheet" href="assets/css/normalize.css" type="text/css" />
     <link rel="stylesheet" href="app.css" type="text/css" />
     <script>
-      (function () {
+      (() => {
         var theme = localStorage.getItem("theme");
         if (!theme) {
           theme = window.matchMedia("(prefers-color-scheme: dark)").matches
@@ -163,7 +163,7 @@
       /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
       _paq.push(["trackPageView"]);
       _paq.push(["enableLinkTracking"]);
-      (function () {
+      (() => {
         var u = "//matomo.vaguelibre.net/";
         _paq.push(["setTrackerUrl", u + "matomo.php"]);
         _paq.push(["setSiteId", "1"]);
