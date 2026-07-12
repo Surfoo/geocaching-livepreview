@@ -13,10 +13,6 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v7
 
-      - name: Load .env file
-        id: dotenv
-        uses: xom9ikk/dotenv@v2.4.0
-
       - name: Setup Bun
         uses: oven-sh/setup-bun@v2
 

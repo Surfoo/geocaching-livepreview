@@ -178,6 +178,16 @@ const copyToClipboard = () => {
     }, 1000)
 }
 
+document.querySelectorAll('.theme-toggle [data-set-theme]').forEach((btn) => {
+    btn.addEventListener('click', () => {
+        const theme = btn.dataset.setTheme
+        document.documentElement.setAttribute('data-theme', theme)
+        if (storageAvailable('localStorage')) {
+            localStorage.setItem('theme', theme)
+        }
+    })
+})
+
 const modals = document.querySelectorAll('[data-modal]')
 modals.forEach(function (trigger) {
     trigger.addEventListener('click', function (event) {

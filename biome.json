@@ -8,9 +8,15 @@
     "lineWidth": 120,
     "attributePosition": "auto"
   },
-  "linter": { "enabled": true, "rules": { "preset": true } },
-  "files": {
-    "maxSize": 3145728
+  "linter": {
+    "enabled": true,
+    "rules": {
+      "preset": "recommended",
+      "style": { "useBlockStatements": "off" },
+      "correctness": {
+        "noInnerDeclarations": "off"
+      }
+    }
   },
   "javascript": {
     "formatter": {
