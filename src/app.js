@@ -40,7 +40,7 @@ const i18nextOptions = {
     },
 
     // define a custom fetch function
-    fetch: (url, options, callback) => {},
+    fetch: (_url, _options, _callback) => {},
 }
 
 i18next.use(Fetch).init({
@@ -167,7 +167,7 @@ const storageAvailable = (type) => {
 }
 
 const isCopyAvailable = () => {
-    return navigator && navigator.clipboard && navigator.clipboard.writeText
+    return navigator?.clipboard?.writeText
 }
 
 const copyToClipboard = () => {

@@ -52,7 +52,7 @@ html[data-theme="dark"] {
 html,
 body {
     height: 100%;
-    line-height: normal !important;
+    line-height: normal;
 }
 
 body {
