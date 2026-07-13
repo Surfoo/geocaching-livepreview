@@ -1,4 +1,7 @@
 {
+    "files": {
+        "includes": ["**", "!public/app.bundle.js", "!public/app.bundle.js.map"]
+    },
     "formatter": {
         "enabled": true,
         "formatWithErrors": false,
