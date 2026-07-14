@@ -15,30 +15,30 @@ This is an "expert" mode for people who already write their descriptions in HTML
 
 ## Running locally
 
-Requires [Bun](https://bun.sh).
+Requires [Node.js](https://nodejs.org) (22+).
 
 ```bash
-bun install
-bun run build   # one-off build of public/app.bundle.js
+npm install
+npm run build   # one-off build of public/app.bundle.js
 # or
-bun run watch   # rebuild on file changes
+npm run watch   # rebuild on file changes
 ```
 
 Then serve the `public/` directory statically, e.g.:
 
 ```bash
-bunx serve public
+npx serve public
 ```
 
 and open it in your browser.
 
 ## Development
 
-- `bun run build` — production build (minified, inline sourcemap)
-- `bun run watch` — rebuild on change
-- `bun run check` / `bun run fix` — lint / auto-fix with [Biome](https://biomejs.dev)
+- `npm run build` — production build (esbuild, minified, inline sourcemap)
+- `npm run watch` — rebuild on change
+- `npm run check` / `npm run fix` — lint / auto-fix with [Biome](https://biomejs.dev)
 
-A pre-commit hook lints staged files with Biome. It's enabled automatically by `bun install` (via the `prepare` script); to enable it manually run `git config core.hooksPath hooks`.
+A pre-commit hook lints staged files with Biome. It's enabled automatically by `npm install` (via the `prepare` script); to enable it manually run `git config core.hooksPath .githooks`.
 
 ## License
 

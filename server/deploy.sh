@@ -1,10 +1,10 @@
 #!/bin/bash
 
 #
-# Script de déploiement générique pour applications statiques (Bun)
+# Script de déploiement générique pour applications statiques (Node)
 # --------------------------------------------------------------
 # Objectif: cloner ou mettre à jour un dépôt Git dans un dossier cible,
-# installer les dépendances via Bun, compiler le bundle JS, puis ajuster
+# installer les dépendances via npm, compiler le bundle JS, puis ajuster
 # les permissions. Aucune dépendance PHP/Composer requise.
 #
 # Utilisation (exemples):
@@ -21,16 +21,16 @@
 #   -d, --dir <path>           Dossier de déploiement absolu (obligatoire)
 #   -b, --branch <name>        Branche à déployer (défaut: main)
 #   -o, --owner <user:group>   Propriétaire:group pour chown (défaut: deploy:www-data)
-#       --bun <path>           Binaire Bun (défaut: bun)
-#       --no-install            Ne pas exécuter bun install
-#       --no-build              Ne pas exécuter bun run build
+#       --npm <path>           Binaire npm (défaut: npm)
+#       --no-install            Ne pas exécuter npm ci
+#       --no-build              Ne pas exécuter npm run build
 #       --allowed-repo <url>   Restreindre au dépôt exact (sécurité optionnelle)
 #       --ssh-key-file <path>  Chemin d'une clé privée SSH à utiliser pour git (optionnel)
 #       --ssh-key-content <s>  Contenu de la clé privée SSH (multiligne). Le script créera un fichier temporaire sécurisé
 #   -h, --help                 Affiche cette aide
 #
 # Exigences:
-#   - bash, git, Bun disponibles sur la machine cible
+#   - bash, git, Node.js/npm disponibles sur la machine cible
 #   - Accès au dépôt (SSH ou HTTPS) configuré
 #
 # Notes:
@@ -46,7 +46,7 @@ REPO_URL=""
 DEPLOY_DIR=""
 BRANCH="main"
 OWNER_GROUP="deploy:deploy"
-BUN_BIN="bun"
+NPM_BIN="npm"
 RUN_INSTALL=1
 RUN_BUILD=1
 ALLOWED_REPO=""
@@ -78,8 +78,8 @@ while [[ $# -gt 0 ]]; do
             BRANCH="${2:-}"; shift 2 ;;
         -o|--owner)
             OWNER_GROUP="${2:-}"; shift 2 ;;
-        --bun)
-            BUN_BIN="${2:-}"; shift 2 ;;
+        --npm)
+            NPM_BIN="${2:-}"; shift 2 ;;
         --no-install)
             RUN_INSTALL=0; shift ;;
         --no-build)
@@ -176,20 +176,20 @@ else
 fi
 
 if [[ $RUN_INSTALL -eq 1 ]]; then
-    echo "📦 Installation des dépendances (Bun)..."
-    if ! command -v "$BUN_BIN" >/dev/null 2>&1; then
-        echo "❌ Bun est introuvable (binaire: $BUN_BIN)." >&2
+    echo "📦 Installation des dépendances (npm)..."
+    if ! command -v "$NPM_BIN" >/dev/null 2>&1; then
+        echo "❌ npm est introuvable (binaire: $NPM_BIN)." >&2
         exit 1
     fi
 
-    "$BUN_BIN" install --frozen-lockfile
+    "$NPM_BIN" ci
 else
     echo "⏭️  Étape install ignorée (--no-install)"
 fi
 
 if [[ $RUN_BUILD -eq 1 ]]; then
     echo "🎨 Compilation du bundle..."
-    "$BUN_BIN" run build
+    "$NPM_BIN" run build
 else
     echo "⏭️  Étape build ignorée (--no-build)"
 fi

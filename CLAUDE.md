@@ -8,15 +8,15 @@ A single-page tool that lets geocache owners write their cache description in HT
 
 ## Commands
 
-- `bun run watch` — rebuild `public/app.bundle.js` on change (bun build, minified, inline sourcemap)
-- `bun run build` — one-off production build of the bundle
-- `bunx biome check .` / `bunx biome format --write .` — lint/format (biome.json: 4-space indent, single quotes, no semicolons, 120 col width, `linter.recommended` disabled)
+- `npm run watch` — rebuild `public/app.bundle.js` on change (esbuild, minified, inline sourcemap)
+- `npm run build` — one-off production build of the bundle
+- `npx biome check src` / `npx biome check --write --unsafe src` — lint/format (biome.json: 4-space indent, single quotes, no semicolons, 120 col width, `linter.recommended` disabled)
 
 There is no test suite. There's no dev server script — open `public/index.html` directly or serve `public/` statically after building the bundle.
 
 ## Architecture
 
-- `src/app.js` is the entire application (single file, no framework). It bundles to `public/app.bundle.js` via bun's built-in bundler (invoked through the `bun build` CLI flags in `package.json` scripts — there's no separate esbuild/rollup config file). The bundle is committed and referenced with a cache-busting query string in `index.html` (`app.bundle.js?20240907` — bump this string when shipping a bundle change).
+- `src/app.js` is the entire application (single file, no framework). It bundles to `public/app.bundle.js` via esbuild (invoked through the `esbuild` CLI flags in `package.json` scripts — there's no separate esbuild config file). The bundle is committed and referenced with a cache-busting query string in `index.html` (`app.bundle.js?20240907` — bump this string when shipping a bundle change).
 - **Editor**: CodeMirror 6 (`@codemirror/*`) instance mounted on `#inputText`, with HTML language support, one-dark theme, autocompletion, and history/keymaps. Its contents are persisted to `localStorage` under the key `content` on every change (guarded by a `storageAvailable` feature check) and restored on load.
 - **Preview**: an open shadow root attached to `#previewContainer`. `initPreview()` builds a synthetic `<html><head>…<link coreCSS/fonts…></head><body><div class="UserSuppliedContent"><span id="ctl00_ContentBody_LongDescription">…` structure inside the shadow root, mimicking geocaching.com's actual DOM (`ctl00_ContentBody_LongDescription` is the real element ID geocaching.com uses) so the loaded `coreCSS` styles apply identically. `applyPreview(content)` sets `innerHTML` on that span on every editor change — intentionally unsanitized since it's a local single-user preview of the user's own content.
 - **i18n**: `i18next` + `i18next-fetch-backend`, loading `assets/locales/{{lng}}.json` (currently hardcoded to `fr.json` as `loadPath` in `i18nextOptions`, not driven by browser locale detection). Locale files live at `public/assets/locales/{en,fr}.json`; elements needing translation are marked with `data-i18n-key` in `index.html`.
@@ -26,7 +26,7 @@ There is no test suite. There's no dev server script — open `public/index.html
 ## Notes
 
 - Dependencies are minimal: CodeMirror + i18next only, no framework.
-- `public/app.bundle.js` and its `.map` are build artifacts but are committed to the repo — regenerate with `bun run build` after editing `src/app.js`, and bump the query-string version in `index.html`'s script tag.
+- `public/app.bundle.js` and its `.map` are build artifacts but are committed to the repo — regenerate with `npm run build` after editing `src/app.js`, and bump the query-string version in `index.html`'s script tag.
 
 <!-- rtk-instructions v2 -->
 # RTK (Rust Token Killer) - Token-Optimized Commands

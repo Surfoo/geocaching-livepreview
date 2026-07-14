@@ -3,8 +3,8 @@
     "version": "1.0.0",
     "description": "Geocaching Live Preview",
     "scripts": {
-        "watch": "bun build --watch --minify src/app.js --sourcemap=inline --outfile=public/app.bundle.js",
-        "build": "bun build         --minify src/app.js --sourcemap=inline --outfile=public/app.bundle.js",
+        "watch": "esbuild src/app.js --bundle --watch --minify --sourcemap=inline --outfile=public/app.bundle.js",
+        "build": "esbuild src/app.js --bundle --minify --sourcemap=inline --outfile=public/app.bundle.js",
         "lint": "biome lint src",
         "check": "biome check src",
         "fix": "biome check --write --unsafe src",
@@ -21,6 +21,7 @@
         "normalize.css": "^8.0.1"
     },
     "devDependencies": {
-        "@biomejs/biome": "~2.5.3"
+        "@biomejs/biome": "~2.5.3",
+        "esbuild": "^0.28.1"
     }
 }
