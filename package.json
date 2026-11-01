@@ -21,7 +21,7 @@
         "normalize.css": "^8.0.1"
     },
     "devDependencies": {
-        "@biomejs/biome": "~2.5.15",
+        "@biomejs/biome": "~2.6.4",
         "esbuild": "^0.28.2"
     }
 }
